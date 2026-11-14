@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tx-audio"
+version = "0.1.0"
+description = "Send a file over the air as music, with Reed-Solomon FEC and tone acknowledgements"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.22",
+    "reedsolo>=1.7",
+    "cryptography>=41",
+]
+
+[project.optional-dependencies]
+live = ["sounddevice>=0.4"]
+test = ["pytest>=7"]
+
+[project.scripts]
+tx-audio = "txaudio.cli:main"
+
+[tool.setuptools]
+packages = ["txaudio"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: long end-to-end simulations"]
